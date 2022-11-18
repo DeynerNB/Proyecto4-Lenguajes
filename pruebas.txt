@@ -1,0 +1,72 @@
+-- pruebas con constantes
+
+f = Constante False
+t = Constante True
+
+prop1 = f .->. f .<-> Negacion(f) .->. Negacion(f)
+prop2 = f .->. f .<-> Negacion(f) .||. f
+
+
+p = f
+q = t
+
+prop3 = p .->. q .<-> Negacion(p) .||. q
+prop4 = p .->. q .<-> Negacion(q) .->. Negacion(p)
+
+
+-- pruebas con variables
+
+vp = Variable "p" 
+vq = Variable "q" 
+
+pru00 = vp .&&. Negacion(vp) 
+pru01 = vp .||. Negacion(vp) 
+
+pru1 = vp .->. vq 
+pru2 = t .->. vq 
+pru3 = vp .->. (vq .->. vq) 
+pru4 = t .->. f 
+pru5 = f .->. t 
+
+pru6 = vp .&&. vq .->. vq .||. vp  -- SÍ es una tautología
+pru7 = vq .||. vp .->. vp .&&. vq  -- NO es una tautología
+pru8 = Negacion(p) .&&. p .||. q .&&. Negacion(q)  -- es una CONTRADICCIÓN
+pru9 = Negacion(vp) .&&. vp .||. vq .&&. Negacion(vq)  -- es una CONTRADICCIÓN
+
+-- tautologías triviales, con variables
+pru10 = vp .||. Negacion(vp) .&&. vq .||. Negacion(vq) -- ojo con la precedencia aquí
+pru11 = (vp .||. Negacion(vp)) .&&. (vq .||. Negacion(vq))
+pru12 = vp .||. Negacion(vp) .||. vq .||. Negacion(vq)
+
+-- contradicciones
+pru13 = (vp .->. Negacion(vp)) .&&. (vq .->. Negacion(vq))
+
+
+conjuncion (
+	conjuncion (
+		disyuncion (q, p),
+		disyuncion (negacion (q), p)),
+	disyuncion (negacion (q), negacion (p))
+)
+
+conjuncion (
+	conjuncion (
+		disyuncion (negacion (p), negacion (q)),
+		disyuncion (p, negacion (q))),
+	disyuncion (p, q)
+)
+
+conjuncion (
+	conjuncion (
+		conjuncion (
+			conjuncion (
+				disyuncion (
+					disyuncion (r, q), p
+				),
+				disyuncion (disyuncion (r, negacion (q)), p)), disyuncion (disyuncion (negacion (r), q), negacion (p))), disyuncion (disyuncion (r, negacion (q)), negacion (p))), disyuncion (disyuncion (negacion (r), negacion (q)), negacion (p)))
+conjuncion (
+	conjuncion (
+		conjuncion (
+			conjuncion (
+				disyuncion (
+					disyuncion (negacion (p), negacion (q)), negacion (r)), disyuncion (disyuncion (negacion (p), negacion (q)), r)), disyuncion (disyuncion (negacion (p), q), negacion (r))), disyuncion (disyuncion (p, negacion (q)), r)), disyuncion (disyuncion (p, q), r))
