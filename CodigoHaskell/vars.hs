@@ -11,7 +11,7 @@ nub (x : xs) = x : (nub (filter(\y -> x /= y ) xs))
 
 -- Funcion
 vars proposicion = do
-    nub (las_vars proposicion)
+    (nub.las_vars) (proposicion)
     where
         las_vars prop =
             case prop of

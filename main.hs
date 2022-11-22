@@ -1,3 +1,10 @@
+import CodigoHaskell.As_Vals
+import CodigoHaskell.EvalProp
+import CodigoHaskell.Gen_Bools
+import CodigoHaskell.Tabla_Verdad
+import CodigoHaskell.Taut
+import CodigoHaskell.Vars
+
 import CodigoHaskell.Sintax
 import FNC
 import Simp
@@ -11,6 +18,7 @@ q = t
 vp = Variable "p"
 vq = Variable "q"
 vr = Variable "r"
+vs = Variable "s"
 
 -- Pruebas para FNC del PDF de Murillo (Formas Normales)
 prueba1 = (Negacion(vp) .||. vq) .->. (Negacion(vq) .&&. vp)
@@ -25,7 +33,6 @@ res2 = (Negacion(vp) .||. Negacion(vq) .||. Negacion(vr)) .&&. (Negacion(vp) .||
 -- **********************************************
 
 -- Ejecutar Pruebas: (imprimirProp_Estilo.generarFNC) (<variable_prueba>)
--- Mostrar Respuest: imprimirProp_Estilo <variable_res>
 
 -- **********************************************
 -- Pruebas de las reglas de simplificacion      *

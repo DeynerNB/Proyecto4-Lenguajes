@@ -14,7 +14,7 @@ taut prop = do
         if recorrer lista_combinaciones_booleanas then
             print("Es tautologia")
         else
-            print("Que paso bro :(")
+            print("No es tautologia")
     where
         variables = vars prop
         n = length variables
@@ -29,3 +29,5 @@ taut prop = do
             where
                 asociacion = as_vals variables fila
                 evaluacion_es_verdadera = evalProp asociacion prop
+
+

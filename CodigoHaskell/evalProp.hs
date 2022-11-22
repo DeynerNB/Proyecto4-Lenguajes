@@ -46,3 +46,5 @@ evalProp ambiente prop =
                 valor1 = evalProp ambiente prop1
                 valor2 = evalProp ambiente prop2
         
+
+
