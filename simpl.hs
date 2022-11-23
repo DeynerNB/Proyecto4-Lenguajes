@@ -1,5 +1,4 @@
-
-module Simp (
+module Simpl (
     separacion
 )
 where

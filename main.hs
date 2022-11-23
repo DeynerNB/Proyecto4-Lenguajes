@@ -7,7 +7,8 @@ import CodigoHaskell.Vars
 
 import CodigoHaskell.Sintax
 import FNC
-import Simp
+import Simpl
+import FND
 
 f = Constante False
 t = Constante True
