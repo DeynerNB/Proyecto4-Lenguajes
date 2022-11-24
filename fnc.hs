@@ -35,6 +35,6 @@ fnc prop = do
         if ((length (vars prop)) == 0) then 
             if ((evalProp [] prop) == True) then Constante True else Constante False
         else
-            generarConjunciones(procesoFnc (tabla_dato prop))
+            (generarConjunciones.procesoFnc) (tabla_dato prop)
     where
         generarConjunciones (x : xs) = if (length xs == 0) then x else Conjuncion x (generarConjunciones xs)
