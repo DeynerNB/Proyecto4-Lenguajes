@@ -31,13 +31,10 @@ procesoFnd (x : xs) = do
                     []
 
 fnd prop = do
-        generarDisyunciones listaConjunciones
+    -- Verificar si es una proposición de solo constantes
+        if ((length (vars prop)) == 0) then 
+            if ((evalProp [] prop) == True) then Constante True else Constante False
+        else
+            generarDisyunciones(procesoFnd (tabla_dato prop))
     where
-        listaConjunciones = procesoFnd (tabla_dato prop)
-        generarDisyunciones (x : xs) = do
-            -- Verificar si es una proposición de solo constantes
-            if ((length (vars prop)) == 0) then 
-                if ((evalProp [] prop) == True) then Constante True 
-                else Constante False
-            else
-                if (length xs == 0) then x else Disyuncion x (generarDisyunciones xs)
+        generarDisyunciones (x : xs) = if (length xs == 0) then x else Disyuncion x (generarDisyunciones xs)
