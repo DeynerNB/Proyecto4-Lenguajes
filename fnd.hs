@@ -1,5 +1,5 @@
 module FND (
-    generarFND
+    fnd
 )
 where
 
@@ -30,7 +30,7 @@ procesoFnd (x : xs) = do
                 else
                     []
 
-generarFND prop = do
+fnd prop = do
         generarDisyunciones listaConjunciones
     where
         listaConjunciones = procesoFnd (tabla_dato prop)

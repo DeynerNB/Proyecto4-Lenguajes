@@ -1,6 +1,5 @@
-
 module FNC (
-    generarFNC
+    fnc
 )
 where
 
@@ -31,7 +30,7 @@ procesoFnc (x : xs) = do
                 else
                     []
 
-generarFNC prop = do
+fnc prop = do
         -- Verificar si es una proposición de solo constantes
         if ((length (vars prop)) == 0) then 
             if ((evalProp [] prop) == True) then Constante True else Constante False
