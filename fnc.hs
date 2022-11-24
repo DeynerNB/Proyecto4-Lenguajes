@@ -32,13 +32,10 @@ procesoFnc (x : xs) = do
                     []
 
 generarFNC prop = do
-        generarConjunciones listaConjunciones
+        -- Verificar si es una proposición de solo constantes
+        if ((length (vars prop)) == 0) then 
+            if ((evalProp [] prop) == True) then Constante False else Constante True
+        else
+            generarConjunciones(procesoFnc (tabla_dato prop))
     where
-        listaConjunciones = procesoFnc (tabla_dato prop)
-        generarConjunciones (x : xs) = do
-            -- Verificar si es una proposición de solo constantes
-            if ((length (vars prop)) == 0) then 
-                if ((evalProp [] prop) == True) then Constante False 
-                else Constante True
-            else
-                if (length xs == 0) then x else Conjuncion x (generarConjunciones xs)
+        generarConjunciones (x : xs) = if (length xs == 0) then x else Conjuncion x (generarConjunciones xs)
