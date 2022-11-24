@@ -5,6 +5,8 @@ where
 
 import CodigoHaskell.Sintax
 import CodigoHaskell.Tabla_Verdad
+import CodigoHaskell.Vars
+import CodigoHaskell.EvalProp
 
 procesoFnd []       = []
 procesoFnd (x : xs) = do
@@ -32,4 +34,10 @@ generarFND prop = do
         generarDisyunciones listaConjunciones
     where
         listaConjunciones = procesoFnd (tabla_dato prop)
-        generarDisyunciones (x : xs) = if (length xs == 0) then x else Disyuncion x (generarDisyunciones xs)
+        generarDisyunciones (x : xs) = do
+            -- Verificar si es una proposición de solo constantes
+            if ((length (vars prop)) == 0) then 
+                if ((evalProp [] prop) == True) then Constante True 
+                else Constante False
+            else
+                if (length xs == 0) then x else Disyuncion x (generarDisyunciones xs)

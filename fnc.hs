@@ -6,10 +6,12 @@ where
 
 import CodigoHaskell.Sintax
 import CodigoHaskell.Tabla_Verdad
+import CodigoHaskell.Vars
+import CodigoHaskell.EvalProp
 
 procesoFnc []       = []
 procesoFnc (x : xs) = do
-        generarConjunciones x ++ (procesoFnc xs)
+        generarDisyunciones x ++ (procesoFnc xs)
     where
 
         -- Genera conjunciones de las variables
@@ -23,14 +25,20 @@ procesoFnc (x : xs) = do
                 esVerdadera(var, valor) = if valor then Negacion(Variable(var)) else Variable(var)
 
         -- Utiliza las proposiciones cuyo resultado fue FALSO para formar parte lista de conjunciones
-        generarConjunciones (listaVariables, evaluacion) = do
+        generarDisyunciones (listaVariables, evaluacion) = do
                 if not(evaluacion) then
                     [negarVerdaderas listaVariables]
                 else
                     []
 
 generarFNC prop = do
-        generarDisyunciones listaConjunciones
+        generarConjunciones listaConjunciones
     where
         listaConjunciones = procesoFnc (tabla_dato prop)
-        generarDisyunciones (x : xs) = if (length xs == 0) then x else Conjuncion x (generarDisyunciones xs)
+        generarConjunciones (x : xs) = do
+            -- Verificar si es una proposición de solo constantes
+            if ((length (vars prop)) == 0) then 
+                if ((evalProp [] prop) == True) then Constante True 
+                else Constante False
+            else
+                if (length xs == 0) then x else Conjuncion x (generarConjunciones xs)
