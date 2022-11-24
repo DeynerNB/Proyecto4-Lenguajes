@@ -38,7 +38,7 @@ generarFNC prop = do
         generarConjunciones (x : xs) = do
             -- Verificar si es una proposición de solo constantes
             if ((length (vars prop)) == 0) then 
-                if ((evalProp [] prop) == True) then Constante True 
-                else Constante False
+                if ((evalProp [] prop) == True) then Constante False 
+                else Constante True
             else
                 if (length xs == 0) then x else Conjuncion x (generarConjunciones xs)
