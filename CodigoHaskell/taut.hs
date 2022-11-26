@@ -1,6 +1,7 @@
 
 module CodigoHaskell.Taut (
-    taut
+    taut,
+    tautStr
 )
 where
 
@@ -29,5 +30,26 @@ taut prop = do
             where
                 asociacion = as_vals variables fila
                 evaluacion_es_verdadera = evalProp asociacion prop
+
+tautStr prop = do
+        if recorrer lista_combinaciones_booleanas then
+            "Es tautologia"
+        else
+            "No es tautologia"
+    where
+        variables = vars prop
+        n = length variables
+        lista_combinaciones_booleanas = gen_bools n
+
+        recorrer [] = True
+        recorrer (fila : filas) = do
+                if evaluacion_es_verdadera then
+                    recorrer filas
+                else
+                    False
+            where
+                asociacion = as_vals variables fila
+                evaluacion_es_verdadera = evalProp asociacion prop
+
 
 

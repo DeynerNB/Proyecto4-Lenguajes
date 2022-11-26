@@ -1,5 +1,7 @@
 module Simpl (
-    separacion
+    separacion,
+    simpl,
+    simplificacion
 )
 where
 
@@ -50,12 +52,13 @@ simplificacion prop =
         Conjuncion p1 (Constante True) -> p1
         Conjuncion (Constante True) p1 -> p1
         -- Inverso
-        Negacion (Constante False)  -> Constante True
-        Negacion (Constante True)   -> Constante False
         Disyuncion p1 (Negacion p2) -> if (p1 == p2) then Constante True else prop
         Disyuncion (Negacion p2) p1 -> if (p1 == p2) then Constante True else prop
         Conjuncion p1 (Negacion p2) -> if (p1 == p2) then Constante False else prop
         Conjuncion (Negacion p2) p1 -> if (p1 == p2) then Constante False else prop
+        -- Inverso Simple
+        Negacion (Constante False) -> Constante True
+        Negacion (Constante True) -> Constante False
         -- Dominacion
         Conjuncion p1 (Constante False) -> Constante False
         Conjuncion (Constante False) p1 -> Constante False
@@ -124,3 +127,6 @@ separacion prop =
                 valor2 = separacion p2
                 res = simplificacion (Equivalencia valor1 valor2)
 
+
+simpl:: Proposicion -> Proposicion
+simpl prop = separacion (simplificacion prop)

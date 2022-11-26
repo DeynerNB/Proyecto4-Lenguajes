@@ -61,8 +61,8 @@ imprimirProp_Estilo prop =
         Constante True           -> "true"
         Constante False          -> "false"
         Variable var             -> var
-        Negacion prop1           -> " ~" ++ imprimirProp_Estilo prop1 ++ " "
-        Conjuncion prop1 prop2   -> " " ++ imprimirProp_Estilo prop1 ++ " && " ++ imprimirProp_Estilo prop2 ++ " "
-        Disyuncion prop1 prop2   -> " " ++ imprimirProp_Estilo prop1 ++ " || " ++ imprimirProp_Estilo prop2 ++ " "
-        Implicacion prop1 prop2  -> " " ++ imprimirProp_Estilo prop1 ++ " => " ++ imprimirProp_Estilo prop2 ++ " "
-        Equivalencia prop1 prop2 -> " " ++ imprimirProp_Estilo prop1 ++ " <=> " ++ imprimirProp_Estilo prop2 ++ " "
+        Negacion prop1           -> "~" ++ imprimirProp_Estilo prop1
+        Conjuncion prop1 prop2   -> imprimirProp_Estilo prop1 ++ " && " ++ imprimirProp_Estilo prop2
+        Disyuncion prop1 prop2   -> imprimirProp_Estilo prop1 ++ " || " ++ imprimirProp_Estilo prop2
+        Implicacion prop1 prop2  -> imprimirProp_Estilo prop1 ++ " => " ++ imprimirProp_Estilo prop2
+        Equivalencia prop1 prop2 -> imprimirProp_Estilo prop1 ++ " <=> " ++ imprimirProp_Estilo prop2

@@ -94,3 +94,63 @@ pruebaReglas_43 = ((Negacion vp) .||. vq) .&&. vp
 pruebaReglas_44 = (vq .||. (Negacion vp)) .&&. vp
 pruebaReglas_45 = vp .->. (vq .->. vr)
 
+listaPruebas = [
+    pruebaReglas_01,
+    pruebaReglas_02,
+    pruebaReglas_03,
+    pruebaReglas_04,
+    pruebaReglas_05,
+    pruebaReglas_06,
+    pruebaReglas_07,
+    pruebaReglas_08,
+    pruebaReglas_09,
+    pruebaReglas_10,
+    pruebaReglas_11,
+    pruebaReglas_12,
+    pruebaReglas_13,
+    pruebaReglas_14,
+    pruebaReglas_15,
+    pruebaReglas_16,
+    pruebaReglas_17,
+    pruebaReglas_18,
+    pruebaReglas_19,
+    pruebaReglas_20,
+    pruebaReglas_21,
+    pruebaReglas_22,
+    pruebaReglas_23,
+    pruebaReglas_24,
+    pruebaReglas_25,
+    pruebaReglas_26,
+    pruebaReglas_27,
+    pruebaReglas_28,
+    pruebaReglas_29,
+    pruebaReglas_30,
+    pruebaReglas_31,
+    pruebaReglas_32,
+    pruebaReglas_33,
+    pruebaReglas_34,
+    pruebaReglas_35,
+    pruebaReglas_36,
+    pruebaReglas_37,
+    pruebaReglas_38,
+    pruebaReglas_39,
+    pruebaReglas_40,
+    pruebaReglas_41,
+    pruebaReglas_42,
+    pruebaReglas_43,
+    pruebaReglas_44,
+    pruebaReglas_45]
+
+
+printLista numero [] = return ()
+printLista numero (x:xs) = do
+    let numeroSumado = numero+1
+    putStrLn ("Prueba #" ++ (show numero))
+    
+    putStr ((imprimirProp_Estilo x) ++ " -> Simplificacion -> ")
+
+    putStrLn (imprimirProp_Estilo (simplificacion x))
+
+    putStr "\n"
+    
+    printLista numeroSumado xs
