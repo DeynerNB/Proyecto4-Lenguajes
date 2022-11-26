@@ -21,18 +21,6 @@ vq = Variable "q"
 vr = Variable "r"
 vs = Variable "s"
 
--- Pruebas para FNC del PDF de Murillo (Formas Normales)
-prueba1 = (Negacion(vp) .||. vq) .->. (Negacion(vq) .&&. vp)
-prueba2 = (vp .->. (vq .||. vr)) .<->. (Negacion(vp) .&&. vr)
-
--- Respuestas del PDF esperadas para los FNC
-res1 = (Negacion(vp) .||. Negacion(vq)) .&&. (vp .||. Negacion(vq)) .&&. (vp .||. vq)
-res2 = (Negacion(vp) .||. Negacion(vq) .||. Negacion(vr)) .&&. (Negacion(vp) .||. Negacion(vq) .||. vr) .&&. (Negacion(vp) .||. vq .||. Negacion(vr)) .&&. (vp .||. Negacion(vq) .||. vr) .&&. (vp .||. vq .||. vr)
-
--- **********************************************
--- *   Para probar el resultado FNC             *
--- **********************************************
-
 -- Se pueden ejecutar pruebas: (imprimirProp_Estilo.generarFNC) (<variable_prueba>)
 
 -- **********************************************
