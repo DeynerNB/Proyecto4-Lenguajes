@@ -221,13 +221,15 @@ fnd_test11 = fnd_contradiccion2 .<->. fnd_result11
 result_FND10 = (taut) (fnd_test10)
 result_FND11 = (taut) (fnd_test11)
 
--- **********************************************
--- *   Para probar la función FND             *
+-- *****************************************************
+-- *   Para probar las funciones de simplificacion   *
 -- Para probar la funcion de simplificacion
--- Ejecutar: printLista 1 listaPruebas
--- **********************************************
+-- Ejecutar: ejecutarPruebasSimplificacion
+-- Para probar la funcion de simplificacion maxima
+-- Ejecutar: ejecutarPruebasSimpl
+-- *****************************************************
 
-listaPruebas = [
+listaPruebasSimplificacion = [
     pruebaReglas_01,
     pruebaReglas_02,
     pruebaReglas_03,
@@ -274,9 +276,27 @@ listaPruebas = [
     pruebaReglas_44,
     pruebaReglas_45]
 
+listaPruebasSimpl = [
+    pruebaFNC_4, 
+    pruebaFNC_5,
+    pruebaFNC_6,  
+    pruebaFNC_7,
+    pruebaFNC_8,
+    pruebaFNC_9,
+    fnc_pruebaCons1,
+    fnc_pruebaCons2,
+    fnc_pruebaCons3,
+    fnc_contradiccion1,
+    fnc_contradiccion2,
+    pruebaFND_4,
+    pruebaFND_5,
+    pruebaFND_6,  
+    pruebaFND_7,  
+    pruebaFND_8,     
+    pruebaFND_9]
 
-ejecutarPruebasAux numero [] = return ()
-ejecutarPruebasAux numero (x:xs) = do
+ejecutarPruebasSimplificacionAux numero [] = return ()
+ejecutarPruebasSimplificacionAux numero (x:xs) = do
     let numeroSumado = numero+1
     putStrLn ("Prueba #" ++ (show numero))
     
@@ -286,6 +306,23 @@ ejecutarPruebasAux numero (x:xs) = do
 
     putStr "\n"
     
-    ejecutarPruebasAux numeroSumado xs
+    ejecutarPruebasSimplificacionAux numeroSumado xs
 
-ejecutarPruebas = ejecutarPruebasAux 1 listaPruebas
+ejecutarPruebasSimplAux numero [] = return ()
+ejecutarPruebasSimplAux numero (x:xs) = do
+    let numeroSumado = numero+1
+    putStrLn ("Prueba #" ++ (show numero))
+    
+    putStr ((imprimirProp_Estilo x) ++ " -> Simpl max -> ")
+
+    putStr (imprimirProp_Estilo (simpl x) ++ " -> taut -> ")
+
+    putStrLn (tautStr ((simpl x) .<->. x))
+
+    putStr "\n"
+    
+    ejecutarPruebasSimplAux numeroSumado xs
+
+
+ejecutarPruebasSimplificacion = ejecutarPruebasSimplificacionAux 1 listaPruebasSimplificacion
+ejecutarPruebasSimpl = ejecutarPruebasSimplAux 1 listaPruebasSimpl
